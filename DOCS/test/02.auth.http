@@ -1,0 +1,109 @@
+### POST signup - success
+POST http://localhost:8080/api/v1/info/signup
+Content-Type: application/json
+
+{
+  "name": "TestUser",
+  "email": "test@example.com",
+  "pass": "Test1234!"
+}
+
+### POST signup - validation error (name too short)
+POST http://localhost:8080/api/v1/info/signup
+Content-Type: application/json
+
+{
+  "name": "Te",
+  "email": "test@example.com",
+  "pass": "Test1234!"
+}
+
+### POST signup - validation error (name too long)
+POST http://localhost:8080/api/v1/info/signup
+Content-Type: application/json
+
+{
+  "name": "ThisNameIsWayTooLongForTheValidationRule",
+  "email": "test@example.com",
+  "pass": "Test1234!"
+}
+
+### POST signup - validation error (invalid email)
+POST http://localhost:8080/api/v1/info/signup
+Content-Type: application/json
+
+{
+  "name": "TestUser",
+  "email": "invalid-email",
+  "pass": "Test1234!"
+}
+
+### POST signup - validation error (password missing special char)
+POST http://localhost:8080/api/v1/info/signup
+Content-Type: application/json
+
+{
+  "name": "TestUser",
+  "email": "test@example.com",
+  "pass": "Test1234"
+}
+
+### POST signup - validation error (password missing number)
+POST http://localhost:8080/api/v1/info/signup
+Content-Type: application/json
+
+{
+  "name": "TestUser",
+  "email": "test@example.com",
+  "pass": "Test!!!!"
+}
+
+### POST signup - validation error (password missing letter)
+POST http://localhost:8080/api/v1/info/signup
+Content-Type: application/json
+
+{
+  "name": "TestUser",
+  "email": "test@example.com",
+  "pass": "1234!!!!"
+}
+
+### PUT update - success
+PUT http://localhost:8080/api/v1/info/update
+Content-Type: application/json
+
+{
+  "name": "UpdatedUser",
+  "email": "updated@example.com",
+  "pass": "Update1234!"
+}
+
+### PUT update - validation error (name too short)
+PUT http://localhost:8080/api/v1/info/update
+Content-Type: application/json
+
+{
+  "name": "Up",
+  "email": "updated@example.com",
+  "pass": "Update1234!"
+}
+
+### PUT update - validation error (invalid email)
+PUT http://localhost:8080/api/v1/info/update
+Content-Type: application/json
+
+{
+  "name": "UpdatedUser",
+  "email": "not-an-email",
+  "pass": "Update1234!"
+}
+
+### PUT update - validation error (password too short)
+PUT http://localhost:8080/api/v1/info/update
+Content-Type: application/json
+
+{
+  "name": "UpdatedUser",
+  "email": "updated@example.com",
+  "pass": "Up1!"
+}
