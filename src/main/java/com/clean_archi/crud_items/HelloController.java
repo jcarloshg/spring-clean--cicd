@@ -1,6 +1,8 @@
 package com.clean_archi.crud_items;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,4 +14,11 @@ public class HelloController {
     public String hello() {
         return "Hello World!";
     }
+
+    @PostMapping("/create")
+    public String create(@RequestBody HelloRequest request) {
+        return "Created: " + request.name();
+    }
 }
+
+record HelloRequest(String name) {}
