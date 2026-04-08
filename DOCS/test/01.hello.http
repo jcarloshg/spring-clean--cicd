@@ -1,0 +1,6 @@
+GET http://localhost:8080/helloword
+
+###
+
+GET http://localhost:8080/helloword
+Content-Type: application/json
