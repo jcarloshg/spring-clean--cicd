@@ -1,6 +1,6 @@
-GET http://localhost:8080/helloword
+GET http://localhost:8080/api/v1/info/helloword
 
 ###
 
-GET http://localhost:8080/helloword
+GET http://localhost:8080/api/v1/info/helloword
 Content-Type: application/json
