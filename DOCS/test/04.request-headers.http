@@ -1,0 +1,31 @@
+### GET token-info - with optional X-Request-Id header
+GET http://localhost:8080/api/v1/credentials/token-info
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+X-Request-Id: req-12345
+
+### GET token-info - without optional X-Request-Id header
+GET http://localhost:8080/api/v1/credentials/token-info
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
+### GET token-info - missing required Authorization header (will fail)
+GET http://localhost:8080/api/v1/credentials/token-info
+X-Request-Id: req-12345
+
+### GET user-agent - required header
+GET http://localhost:8080/api/v1/credentials/user-agent
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+
+### GET all headers - full headers
+GET http://localhost:8080/api/v1/credentials/headers
+Accept-Language: en-US,en;q=0.9,es;q=0.8
+Accept: application/json
+X-Custom-Header: custom-value
+
+### GET all headers - with default Accept value
+GET http://localhost:8080/api/v1/credentials/headers
+Accept-Language: es-ES
+
+### GET all headers - without optional X-Custom-Header
+GET http://localhost:8080/api/v1/credentials/headers
+Accept-Language: fr-FR,fr;q=0.9
+Accept: application/xml
