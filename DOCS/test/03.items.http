@@ -1,0 +1,62 @@
+### GET all items - with filters
+GET http://localhost:8080/api/v1/items?name=Laptop&page=0&size=10
+
+### GET all items - no filters
+GET http://localhost:8080/api/v1/items
+
+### GET all items - default pagination
+GET http://localhost:8080/api/v1/items?page=2
+
+### GET item by id - success
+GET http://localhost:8080/api/v1/items/123
+
+### POST create item - success
+POST http://localhost:8080/api/v1/items
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "description": "Gaming laptop with RTX 4080"
+}
+
+### POST create item - validation error (blank name)
+POST http://localhost:8080/api/v1/items
+Content-Type: application/json
+
+{
+  "name": "",
+  "description": "Some description"
+}
+
+### POST create item - validation error (name too short)
+POST http://localhost:8080/api/v1/items
+Content-Type: application/json
+
+{
+  "name": "A",
+  "description": "Some description"
+}
+
+### PUT update item - success
+PUT http://localhost:8080/api/v1/items/123
+Content-Type: application/json
+
+{
+  "name": "Updated Laptop",
+  "description": "Updated gaming laptop"
+}
+
+### PUT update item - validation error (description too long)
+PUT http://localhost:8080/api/v1/items/123
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
+}
+
+### DELETE item - soft delete (default)
+DELETE http://localhost:8080/api/v1/items/123
+
+### DELETE item - permanent delete
+DELETE http://localhost:8080/api/v1/items/123?permanent=true
