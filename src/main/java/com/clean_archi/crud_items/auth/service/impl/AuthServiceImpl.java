@@ -17,4 +17,14 @@ public class AuthServiceImpl implements AuthService {
     public String update(UpdateRequest request) {
         return "User updated: " + request.name();
     }
+
+    @Override
+    public String getById(Long id) {
+        return "User found with id: " + id;
+    }
+
+    @Override
+    public String delete(Long id) {
+        return "User deleted with id: " + id;
+    }
 }
