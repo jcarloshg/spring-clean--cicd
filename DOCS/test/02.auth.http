@@ -68,8 +68,18 @@ Content-Type: application/json
   "pass": "1234!!!!"
 }
 
+### POST signup - duplicate email (409 Conflict)
+POST http://localhost:8080/api/v1/info/signup
+Content-Type: application/json
+
+{
+  "name": "TestUser",
+  "email": "test@example.com",
+  "pass": "Test1234!"
+}
+
 ### PUT update - success
-PUT http://localhost:8080/api/v1/info/update
+PUT http://localhost:8080/api/v1/info/update/1
 Content-Type: application/json
 
 {
@@ -79,7 +89,7 @@ Content-Type: application/json
 }
 
 ### PUT update - validation error (name too short)
-PUT http://localhost:8080/api/v1/info/update
+PUT http://localhost:8080/api/v1/info/update/1
 Content-Type: application/json
 
 {
@@ -89,7 +99,7 @@ Content-Type: application/json
 }
 
 ### PUT update - validation error (invalid email)
-PUT http://localhost:8080/api/v1/info/update
+PUT http://localhost:8080/api/v1/info/update/1
 Content-Type: application/json
 
 {
@@ -99,7 +109,7 @@ Content-Type: application/json
 }
 
 ### PUT update - validation error (password too short)
-PUT http://localhost:8080/api/v1/info/update
+PUT http://localhost:8080/api/v1/info/update/1
 Content-Type: application/json
 
 {
@@ -108,8 +118,34 @@ Content-Type: application/json
   "pass": "Up1!"
 }
 
-### GET user by id - success
-GET http://localhost:8080/api/v1/info/123
+### PUT update - user not found (404 Not Found)
+PUT http://localhost:8080/api/v1/info/update/999
+Content-Type: application/json
 
-### DELETE user by id - success
-DELETE http://localhost:8080/api/v1/info/123
+{
+  "name": "UpdatedUser",
+  "email": "updated@example.com",
+  "pass": "Update1234!"
+}
+
+### PUT update - duplicate email (409 Conflict)
+PUT http://localhost:8080/api/v1/info/update/1
+Content-Type: application/json
+
+{
+  "name": "UpdatedUser",
+  "email": "updated@example.com",
+  "pass": "Update1234!"
+}
+
+### GET user by id - success
+GET http://localhost:8080/api/v1/info/1
+
+### GET user by id - not found (404 Not Found)
+GET http://localhost:8080/api/v1/info/999
+
+### DELETE user by id - success (204 No Content)
+DELETE http://localhost:8080/api/v1/info/1
+
+### DELETE user by id - not found (404 Not Found)
+DELETE http://localhost:8080/api/v1/info/999

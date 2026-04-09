@@ -1,19 +1,13 @@
 package com.clean_archi.crud_items.auth.controller;
 
+import com.clean_archi.crud_items.auth.dto.UserDto;
 import com.clean_archi.crud_items.auth.dto.request.SignupRequest;
 import com.clean_archi.crud_items.auth.dto.request.UpdateRequest;
 import com.clean_archi.crud_items.auth.dto.response.ApiResponse;
 import com.clean_archi.crud_items.auth.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/info")
@@ -26,26 +20,26 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<ApiResponse<String>> signup(@Valid @RequestBody SignupRequest request) {
-        String result = authService.signup(request);
+    public ResponseEntity<ApiResponse<UserDto>> signup(@Valid @RequestBody SignupRequest request) {
+        UserDto result = authService.signup(request);
         return ResponseEntity.ok(ApiResponse.success(result));
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<ApiResponse<String>> update(@Valid @RequestBody UpdateRequest request) {
-        String result = authService.update(request);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ApiResponse<UserDto>> update(@PathVariable Long id, @Valid @RequestBody UpdateRequest request) {
+        UserDto result = authService.update(id, request);
         return ResponseEntity.ok(ApiResponse.success(result));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<String>> getById(@PathVariable Long id) {
-        String result = authService.getById(id);
+    public ResponseEntity<ApiResponse<UserDto>> getById(@PathVariable Long id) {
+        UserDto result = authService.getById(id);
         return ResponseEntity.ok(ApiResponse.success(result));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<String>> delete(@PathVariable Long id) {
-        String result = authService.delete(id);
-        return ResponseEntity.ok(ApiResponse.success(result));
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        authService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
