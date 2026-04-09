@@ -1,0 +1,14 @@
+### GET all config values (including @Component AppInfo)
+GET http://localhost:8080/api/v1/config
+
+### GET app name
+GET http://localhost:8080/api/v1/config/app-name
+
+### GET max items
+GET http://localhost:8080/api/v1/config/max-items
+
+### GET feature enabled status
+GET http://localhost:8080/api/v1/config/feature-enabled
+
+### GET app info from @Component
+GET http://localhost:8080/api/v1/config/app-info
